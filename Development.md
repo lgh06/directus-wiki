@@ -67,7 +67,7 @@ The AMP-packages listed above all include Phpmyadmin. The following three steps 
    3. Fill in *username* and *password*. Leave the other fields as defaults.
 3. Import the database schema
    1. Import->File to Import->Choose file
-   2. Open directus/directus.sql
+   2. Open api/schema.sql
    3. Press Go
 
 ### Step 6: Setup Directus
