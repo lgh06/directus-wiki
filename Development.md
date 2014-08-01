@@ -90,4 +90,4 @@ UPDATE  `directus_storage_adapters` SET  `destination` =  '/Applications/MAMP/ht
 ```
 
 ### Step 8: Done!
-Open directus by navigating to the path *directus* in your local host. Log in using the default user *admin@getdirectus.com* and password *admin*
+Open directus by navigating to the path *directus* in your local host. Log in using the default user *admin@example.com* and password *password*
