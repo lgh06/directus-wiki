@@ -6,14 +6,14 @@ Directus is a forward-looking framework, not built to support legacy systems. It
 * Apache HTTP Server
 * mod_rewrite
 * PHP 5.5+
-* curl (todo)
+* curl
 * gd
-* mcrypt (todo)
 * MySQL 5.2+
 * pdo_mysql
 
 Optionally, you can install the following for added functionality:
 * Imagick – _Adds thumbnail support for TIFF, PSD, and PDF files_
+* mcrypt
 
 _If your server is not compatible with the above requirements please contact your host to upgrade._
 
