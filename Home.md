@@ -48,6 +48,8 @@ For tables that contain an “active” column, when selecting items from the li
 * Draft – Items in draft mode are grayed out visually and this column is saved with a value of 2. Applications should exclude these items from production viewing.
 * Delete – This effectively removes items from Directus, though no longer visible, due to the soft delete policy items are maintained within the database with an active value of 0. Applications should exclude these items from production viewing.
 
+You can also override the above with a custom "status" field name, allowed values, and colors. See updating config files.
+
 ### Changing Visible Columns
 By default Directus shows the first few columns of data for any given table. Users can then adjust which columns they see by hovering over the gray table header and selecting the gear on the right.
 
