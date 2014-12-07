@@ -21,7 +21,7 @@ wamp tray icon > apache > apache module > rewrite_module
 
 ## How To Install Composer Dependencies
 
-Install composer in your project:
+Navigate to directus/api/ and install composer:
 
 `curl -s https://getcomposer.org/installer | php`
 
