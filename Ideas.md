@@ -1,2 +1,0 @@
-**Auto-Save**
-Save current JSON state of the edit page (or any page) every few seconds after onChange of any fields to the directus_users table. Create a new field in directus_users to hold the JSON. If your browser crashes, you accidentally close a tab, or you just want to move to a different computer/device/browser, you don't have to start all over.
