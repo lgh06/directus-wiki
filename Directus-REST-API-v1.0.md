@@ -3,22 +3,22 @@
 **Base API URL: `{{DIRECTUS_ROOT}}/api/1/`**
 
 
-Resource | Description
+Resource | Return
 :---------|:----------------
-**`GET  privileges/:groupId/`**  |  Returns JSON object of the privileges for a given group
-**`GET tables/:table/rows/`**  |  Returns a collection of table entries viewable by authenticated user for given table
-**`GET tables/:table/rows/:id`**  |  return JSON object of a given table entry
-**`GET activity/`**  |  Return a collection of latest activity
-**`GET tables/:table/columns/`**  |  Returns a collection of the column details for a given table.
-**`GET tables/:table/columns/:column/`**  |  Return details for a given column in a given table.
-**`GET groups/`**  |  Return a collection of directus Groups
-**`GET groups/:id`**  |  Return the group information for a given group
-**`GET preferences/:table`**  |  Return the preferences for a given table
-**`GET bookmarks/`**  |  Return the bookmarks for currently authenticated user
-**`GET bookmarks/:id`**  |  Return bookmark details for a specified bookmark (Must belong to authenticated user)
-**`GET tables/`**  |  Return collection of all tables registered with Directus
-**`GET messages/rows`**  |  Return collection of messages for authenticated user
-**`GET messages/rows/:id`**  |  Return Message details for a given message
+**`GET  privileges/:groupId/`**  |  JSON object of the privileges for a given group
+**`GET tables/:table/rows/`**  |  Collection of table entries viewable by authenticated user
+**`GET tables/:table/rows/:id`**  |  JSON object of a given table entry
+**`GET activity/`**  |  Collection of latest directus/db activity
+**`GET tables/:table/columns/`**  |  Collection of the column details for a given table
+**`GET tables/:table/columns/:column/`**  |  Details for a given column in a given table
+**`GET groups/`**  |  Collection of directus user-groups
+**`GET groups/:id`**  |  User-group information
+**`GET preferences/:table`**  |  Preferences for a given table
+**`GET bookmarks/`**  |  Bookmarks for currently authenticated user
+**`GET bookmarks/:id`**  |  Bookmark details for a specified bookmark (must belong to authenticated user)
+**`GET tables/`**  |  Collection of all tables registered with Directus
+**`GET messages/rows`**  |  Collection of messages for the authenticated user
+**`GET messages/rows/:id`**  |  Message details for a given message
 
 
 
@@ -26,18 +26,18 @@ Resource | Description
 
 Parameter  |  Example  |  Description
 :-----------|:-----------|:-----------------------
-**`currentPage`**  |  *`0`, `1`, `2`*  |  Current Page for Paginated Results
-**`perPage`**  |  *`100`, `200`, `300`*  |  Results to show per page
+**`currentPage`**  |  *`0`, `1`, `2`*  |  Current page for paginated results
+**`perPage`**  |  *`100`, `200`, `300`*  |  Number of results per page
 **`sort`**  |  *`id`, `title`, `date_uploaded`*  |  Column to sort results upon
 **`sort_order`**  |  *`ASC`, `DESC`*  |  Order direction for sorting
 **`active`**  |  *`1`, `1,2`, `2`*  |  Filter by a CSV of status values **for tables with a status column** such as `active`
-**`columns_visible`**  |  *`title`, `date`*  |  Name of column to show in results. Columns can be chained such as: `columns_visible=title&columns_visibile=first_name`
+**`columns_visible`**  |  *`title`, `date`*  |  Name of column shown in results. Can be chained such as: `columns_visible=title&columns_visibile=first_name`
 
 
 # Error Responses
 
 ### Not Authenticated
-You must be logged in to access the API. Some view permissions (ex. table listing) are not *strictly* enforced for privileges, just authentication level
+You must be logged in to Directus to access the API. Some high-level view permissions (ex. table-listing) are not *strictly* enforced by privileges, just general authentication.
 
 ### Parse
 Any non-JSON response: Error
@@ -51,10 +51,10 @@ Additional error responses
 Authentication privileges follow the user-group that the key was generated from. There are two levels of Authentication:
 
 ### API Key
-Single Consumer Key that is generated for each user. Passed as a parameter with every API resource that uses this level. **Used with all GET Resources**
+A single consumer-key is generated for each user which is passed as a parameter with every API resource that uses this type. **Used with all GET Resources**
 
 ### OAuth
-Consumer Key and Secret is generated for each user. Utilizes a regular OAuth flow to acquire OAuth Tokens for use with all requests on this level. **Used with all POST/PUT Resources**
+A consumer-key and secret is generated for each user utilizing a regular OAuth flow to acquire OAuth Tokens for use with all requests of this type. **Used with all POST/PUT Resources**
 
 # Examples
 
@@ -117,9 +117,9 @@ Parameter  |  Example  |  Description
     {
       "id": 3,
       "active": 1,
-      "first_name": "Jason",
+      "first_name": "John",
       "last_name": "Smith",
-      "email": "jason@rngr.com",
+      "email": "john.smith@example.com",
       "password": "asfafspojd92en1oi2n31b412ubb1n",
       "salt": "5329e597d9afa",
       "position": "",
@@ -150,29 +150,28 @@ Parameter  |  Example  |  Description
 *All API calls pass through ACL.*
 
 ### Passwords
-Passwords use `CRYPT_BLOWFISH`
-Generates Random salts when password Hashed, Encodes the Hash type, salt and stretching iteration count into “Hash Encoding String”. On Comparison, it reads said string to retrieve necessary information.
-Uses /dev/urandom for randomness
+Directus generates random salts when a password is hashed, encodes the hash-type, salt and stretching iteration count into the “hash encoding string”. During the comparison, it reads this string to retrieve necessary information.
 
-Uses 8 iteration password stretching
-128 bit encryption key
+* `CRYPT_BLOWFISH` for passwords
+* 8 iteration password stretching
+* `/dev/urandom` for randomness
+* 128 bit encryption key
 
 ### Database Security
-Uses Prepared Statements for all database interaction.
-Uses ZendDb module for out-of-the-box security.
+* Prepared statements (PDO) for all database interactions
+* Zend-db module for out-of-the-box security
 
 ### Timing Attacks
-Account Email probing is theoretically possible.
-Can dummy salt so consistent response time if desired feature
+While account email probing is theoretically possible, you can dummy salt so consistent response time if desired.
 
 ### Password Reset
-When New Password Requested, Nullifies existing password and sends new unique password token to email associated with account
+When a new password is requested, the existing password is NULLified and a new unique password token is sent to the account's email address.
 
 ### XSS
-Currently, XSS within Directus is possible. This is a design decision to give full control to the client install. Any Malicious Data needs to be weeded out in the Web Application/Data Entry point, else Directus can become compromised.
+While internal XSS may be possible, successfully authenticated users are assumed to be non-malicious. This was a design decision to give full control to any connected applications. All malicious data needs to be sanitized in the web-application/data entry point, else the database and therefore Directus could become compromised.
 
 ### Session Hijacking
-Currently, nothing is done to minimize potential attack vector from session Hijacking. Possible advancement could be to validate session with request metadata to provide minimal security.
+Currently, nothing is done to minimize potential attacks via session hijacking. One possible advancement would be to validate the session with request metadata to provide partial security.
 
-### Extensions/Custom Endpoints
-Easy process to add custom features/Pages into Directus. Create files to add new sandboxed endpoints using Slim routes.
+# Custom Endpoints
+To add custom endpoints into Directus, simply create new sandboxed endpoints using Slim routes for any custom files.
