@@ -5,20 +5,20 @@
 
 Resource | Description
 :---------|:----------------
-GET  privileges/:groupId/  |  Returns JSON object of the privileges for a given group
-GET tables/:table/rows/  |  Returns a collection of table entries viewable by authenticated user for given table
-GET tables/:table/rows/:id  |  return JSON object of a given table entry
-GET activity/  |  Return a collection of latest activity
-GET tables/:table/columns/  |  Returns a collection of the column details for a given table.
-GET tables/:table/columns/:column/  |  Return details for a given column in a given table.
-GET groups/  |  Return a collection of directus Groups
-GET groups/:id  |  Return the group information for a given group
-GET preferences/:table  |  Return the preferences for a given table
-GET bookmarks/  |  Return the bookmarks for currently authenticated user
-GET bookmarks/:id  |  Return bookmark details for a specified bookmark (Must belong to authenticated user)
-GET tables/  |  Return collection of all tables registered with Directus
-GET messages/rows  |  Return collection of messages for authenticated user
-GET messages/rows/:id  |  Return Message details for a given message
+**`GET  privileges/:groupId/`**  |  Returns JSON object of the privileges for a given group
+**`GET tables/:table/rows/`**  |  Returns a collection of table entries viewable by authenticated user for given table
+**`GET tables/:table/rows/:id`**  |  return JSON object of a given table entry
+**`GET activity/`**  |  Return a collection of latest activity
+**`GET tables/:table/columns/`**  |  Returns a collection of the column details for a given table.
+**`GET tables/:table/columns/:column/`**  |  Return details for a given column in a given table.
+**`GET groups/`**  |  Return a collection of directus Groups
+**`GET groups/:id`**  |  Return the group information for a given group
+**`GET preferences/:table`**  |  Return the preferences for a given table
+**`GET bookmarks/`**  |  Return the bookmarks for currently authenticated user
+**`GET bookmarks/:id`**  |  Return bookmark details for a specified bookmark (Must belong to authenticated user)
+**`GET tables/`**  |  Return collection of all tables registered with Directus
+**`GET messages/rows`**  |  Return collection of messages for authenticated user
+**`GET messages/rows/:id`**  |  Return Message details for a given message
 
 
 
@@ -26,31 +26,29 @@ GET messages/rows/:id  |  Return Message details for a given message
 
 Parameter  |  Example  |  Description
 :-----------|:-----------|:-----------------------
-currentPage  |  *0 , 1 , 2*  |  Current Page for Paginated Results
-perPage  |  *100 , 200 , 300*  |  Results to show per page
-sort  |  *id , title , date_uploaded*  |  Column to sort results upon
-sort_order  |  *ASC, DESC*  |  Order direction for sorting
-active  |  *1 , 1,2 , 2*  |  Filter by a CSV of status values **for tables with a status column** such as `active`
-columns_visible  |  *title , columns_visible=title &columns_visibile=first_name*  |  Name of column to show in results, can be chained
+**`currentPage`**  |  *`0`, `1`, `2`*  |  Current Page for Paginated Results
+**`perPage`**  |  *`100`, `200`, `300`*  |  Results to show per page
+**`sort`**  |  *`id`, `title`, `date_uploaded`*  |  Column to sort results upon
+**`sort_order`**  |  *`ASC`, `DESC`*  |  Order direction for sorting
+**`active`**  |  *`1`, `1,2`, `2`*  |  Filter by a CSV of status values **for tables with a status column** such as `active`
+**`columns_visible`**  |  *`title`, `date`*  |  Name of column to show in results. Columns can be chained such as: `columns_visible=title&columns_visibile=first_name`
 
 
 # Error Responses
 
-### Authorization:
-
-**Not Authenticated:** You must be logged in to access the API.
-
-View Permissions not Strictly Enforced yet (ex. table listing) for privileges, just authentication level
+### Not Authenticated
+You must be logged in to access the API. Some view permissions (ex. table listing) are not *strictly* enforced for privileges, just authentication level
 
 ### Parse
-Any Non-JSON Response: Error
+Any non-JSON response: Error
 
-@TODO: Additional error responses
+### @TODO
+Additional error responses
 
 
 # Authentication
 
-Authentication Privileges follow the user-group that the key was generated from. There are two levels of Authentication:
+Authentication privileges follow the user-group that the key was generated from. There are two levels of Authentication:
 
 ### API Key
 Single Consumer Key that is generated for each user. Passed as a parameter with every API resource that uses this level. **Used with all GET Resources**
@@ -102,8 +100,10 @@ Consumer Key and Secret is generated for each user. Utilizes a regular OAuth flo
 ## GET  tables/:table/rows/
 *Returns a collection of table entries the authenticated user has permission to view*
 
-ids - Comma delimited list of ids to return
-	ex. 1,2,3,5,6,7,8
+Parameter  |  Example  |  Description
+:-----------|:-----------|:-----------------------
+**`ids`**  |  `1,2,3,5,6,7,8`  |  Comma delimited list of ids to return
+
 #### Example Request
 **GET** http://directus.dev/api/1/tables/directus_users/rows
 
@@ -149,34 +149,30 @@ ids - Comma delimited list of ids to return
 # Security
 *All API calls pass through ACL.*
 
-## Passwords
-
-Passwords use CRYPT_BLOWFISH
+### Passwords
+Passwords use `CRYPT_BLOWFISH`
 Generates Random salts when password Hashed, Encodes the Hash type, salt and stretching iteration count into “Hash Encoding String”. On Comparison, it reads said string to retrieve necessary information.
 Uses /dev/urandom for randomness
 
 Uses 8 iteration password stretching
 128 bit encryption key
 
-## Database Security:
-
+### Database Security
 Uses Prepared Statements for all database interaction.
 Uses ZendDb module for out-of-the-box security.
 
-## Timing Attacks:
+### Timing Attacks
 Account Email probing is theoretically possible.
 Can dummy salt so consistent response time if desired feature
 
-## Password Reset:
+### Password Reset
 When New Password Requested, Nullifies existing password and sends new unique password token to email associated with account
 
-## XSS:
+### XSS
 Currently, XSS within Directus is possible. This is a design decision to give full control to the client install. Any Malicious Data needs to be weeded out in the Web Application/Data Entry point, else Directus can become compromised.
 
-## Session Hijacking:
+### Session Hijacking
 Currently, nothing is done to minimize potential attack vector from session Hijacking. Possible advancement could be to validate session with request metadata to provide minimal security.
 
-## Extensions/Custom Endpoints
-Easy process to add custom features/Pages into Directus.
-
-Create files to add new sandboxed endpoints using Slim routes.
+### Extensions/Custom Endpoints
+Easy process to add custom features/Pages into Directus. Create files to add new sandboxed endpoints using Slim routes.
