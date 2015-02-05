@@ -31,7 +31,7 @@ perPage  |  *100 , 200 , 300*  |  Results to show per page
 sort  |  *id , title , date_uploaded*  |  Column to sort results upon
 sort_order  |  *ASC, DESC*  |  Order direction for sorting
 active  |  *1 , 1,2 , 2*  |  Filter by a CSV of status values **for tables with a status column** such as `active`
-columns_visible  |  *title , columns_visible=title&columns_visibile=first_name*  |  Name of column to show in results, can be chained
+columns_visible  |  *title , columns_visible=title &columns_visibile=first_name*  |  Name of column to show in results, can be chained
 
 
 # Error Responses
@@ -48,25 +48,25 @@ Any Non-JSON Response: Error
 @TODO: Additional error responses
 
 
-AUTHENTICATION
+# Authentication
 
-Two levels of Authentication
+Authentication Privileges follow the user-group that the key was generated from. There are two levels of Authentication:
 
-Authentication Privileges follow the users group that the key was generated from
+### API Key
+Single Consumer Key that is generated for each user. Passed as a parameter with every API resource that uses this level. **Used with all GET Resources**
 
-API Key: Single Consumer Key that is generated for each user. Passed as parameter with every API resource that uses this level
-- Used with all GET Resources
-
-OAuth: Consumer Key and Secret is generated for each User. This is used in regular OAuth flow to aquire OAuth Tokens to use with all requests on this level.
-- Used with all POST/PUT Resources
+### OAuth
+Consumer Key and Secret is generated for each user. Utilizes a regular OAuth flow to acquire OAuth Tokens for use with all requests on this level. **Used with all POST/PUT Resources**
 
-GET  privileges/:groupId/
+# Examples
 
-Returns JSON object of the privileges for a given group
+## GET  privileges/:groupId/
+*Returns JSON object of the privileges for a given group*
 
-Example Request
-GET
-http://directus.dev/api/1/privileges/0
+#### Example Request
+**GET** http://directus.dev/api/1/privileges/0
+
+```
 [
   {
     "id": "23",
@@ -96,18 +96,18 @@ http://directus.dev/api/1/privileges/0
     "unlisted": null
   }
 ]
-
+```
 
 
-GET  tables/:table/rows/
-
-Returns a collection of table entries viewable by authenticated user for given table
+## GET  tables/:table/rows/
+*Returns a collection of table entries the authenticated user has permission to view*
 
 ids - Comma delimited list of ids to return
 	ex. 1,2,3,5,6,7,8
-Example Request
-GET
-http://directus.dev/api/1/tables/directus_users/rows
+#### Example Request
+**GET** http://directus.dev/api/1/tables/directus_users/rows
+
+```
 {
   "active": 1,
   "inactive": 0,
@@ -143,11 +143,13 @@ http://directus.dev/api/1/tables/directus_users/rows
       "zip": ""
     }
 ]
+```
 
-SECURITY
-All API calls pass through ACL.
 
-Passwords:
+# Security
+*All API calls pass through ACL.*
+
+## Passwords
 
 Passwords use CRYPT_BLOWFISH
 Generates Random salts when password Hashed, Encodes the Hash type, salt and stretching iteration count into “Hash Encoding String”. On Comparison, it reads said string to retrieve necessary information.
@@ -156,25 +158,25 @@ Uses /dev/urandom for randomness
 Uses 8 iteration password stretching
 128 bit encryption key
 
-Database Security:
+## Database Security:
 
 Uses Prepared Statements for all database interaction.
 Uses ZendDb module for out-of-the-box security.
 
-Timing Attacks:
+## Timing Attacks:
 Account Email probing is theoretically possible.
 Can dummy salt so consistent response time if desired feature
 
-Password Reset:
+## Password Reset:
 When New Password Requested, Nullifies existing password and sends new unique password token to email associated with account
 
-XSS:
+## XSS:
 Currently, XSS within Directus is possible. This is a design decision to give full control to the client install. Any Malicious Data needs to be weeded out in the Web Application/Data Entry point, else Directus can become compromised.
 
-Session Hijacking:
+## Session Hijacking:
 Currently, nothing is done to minimize potential attack vector from session Hijacking. Possible advancement could be to validate session with request metadata to provide minimal security.
 
-Extensions/Custom Endpoints
+## Extensions/Custom Endpoints
 Easy process to add custom features/Pages into Directus.
 
 Create files to add new sandboxed endpoints using Slim routes.
