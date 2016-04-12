@@ -1,3 +1,0 @@
-* Meteor
-* NoSQL
-* Mongo-DB
