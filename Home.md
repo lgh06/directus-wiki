@@ -1,6 +1,6 @@
 -----
 **Complete Directus Documentation here:**
-### https://github.com/directus/docs
+### https://docs.getdirectus.com
 -----
-**The web formatted version resides here:**
-### http://getdirectus.com/docs
+**Complete Directus API Docs here:**
+### https://api.getdirectus.com
