@@ -2,9 +2,6 @@
 
 ## Automated
 
-
-## Automated
-
 ### One time setup
 
 1. Create a suite.sh file with the following contents:
