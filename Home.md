@@ -1,6 +1,1 @@
------
-**Complete Directus Documentation here:**
-### https://docs.getdirectus.com
------
-**Complete Directus API Docs here:**
-### https://api.getdirectus.com
+This Wiki contains information on how the internal systems of the platform work.
