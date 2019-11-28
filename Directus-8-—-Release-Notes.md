@@ -43,7 +43,7 @@
   * IP Whitelist now uses a more intuitive Tags interface
   * Telemetry can now be enabled or disabled from within the App
 * **New and Improved Interfaces**
-  * New full-featured WYSIWYG Interface (TinyMCE) replaces the the two broken ones we had before
+  * New full-featured WYSIWYG Interface (TinyMCE) replaces our two previous incomplete ones
   * Complete overhaul of the Repeater interface, allows nesting
   * Added a Key-Value interface
   * Redesigned and simplified the Color interface
