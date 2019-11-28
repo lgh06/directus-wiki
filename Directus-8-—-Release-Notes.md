@@ -3,7 +3,7 @@
 ## 🔥 Breaking Changes
 * 💥 The Admin App now expects to be in the API’s `/public` folder
 * 💥 Password reset flow is now a `POST` request instead of a `GET`
-* 💥 `config/api.php` no longer maps to the default project (eg: `_`). All project keys are defined by their respective config file's name.
+* 💥 The `config/api.php` no longer maps to the default project (eg: `_`). All project keys are defined by their respective config file's name.
 
 ## ✨ New Features
 * **Platform Structure**
