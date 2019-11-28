@@ -1,14 +1,15 @@
 # IMPORTANT: Read through the entire list of breaking changes _before_ upgrading production projects to Directus 8. Always perform a full database backup before upgrading.
 
 ## 🔥 Breaking Changes
-* The Admin App now expects to be in the API’s `/public` folder
-* Password reset flow is now a `POST` request instead of a `GET`
-* The API no longer uses `config/api.php` for the `_` (default) project; all project keys come directly from the config file name in the URL directly
+* 💥 The Admin App now expects to be in the API’s `/public` folder
+* 💥 Password reset flow is now a `POST` request instead of a `GET`
+* 💥 `config/api.php` no longer maps to the default project (eg: `_`). All project keys are defined by their respective config file's name.
 
 ## ✨ New Features
 * **Platform Structure**
   * The App and API have been combined!!
   * The App config file has been removed, all public projects are automatically fetched
+  * There is no longer a "default" project, all projects are equal
 * **Updated Admin App Design**
   * New Login/Reset/Install pages (more info below)
   * New Customizable Module Bar (replaces User Menu)
