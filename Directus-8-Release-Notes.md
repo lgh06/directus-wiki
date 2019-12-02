@@ -51,6 +51,7 @@
 * **Files & Thumbnails**
   * Brand new Asset Generator replaces our previous Thumbnailer
   * Cleaner URL/Options syntax for requesting dynamically generated assets
+  * Ability to rename files on the disk
   * Middleware for private files through re-generating file URLs
   * Paves the way for other effects/transforms
   * Thumbnails can be _explicitly_ whitelisted (avoids issues with permutations)
