@@ -2,8 +2,38 @@
 
 ## 🔥 Breaking Changes
 * 💥 The Admin App now expects to be in the API’s `/public` folder
-* 💥 Password reset flow is now a `POST` request instead of a `GET`
 * 💥 The `config/api.php` no longer maps to the default project (eg: `_`). All project keys are defined by their respective config file's name.
+* 💥 The `app` and `settings` keys in the config file have been removed
+* 💥 Password reset flow is now a `POST` request instead of a `GET`
+
+## 🚀 Migration Guide (v7-v8)
+1. Rename the config files to your desired project names (eg `/config/api.my-project.php` to `/config/my-project.php`). Note: if you'd like to keep using `_` as your project name, rename the `/config/api.php` file to `/config/_.php`).
+2. Update `app` and `settings` in your project config file to reflect the following changes:
+
+```
+BEFORE-----------------------------------
+
+'app' => [
+    'env' => 'production',
+    'timezone' => 'America/New_York'
+],
+'settings' => [
+    'logger' => [
+        'path' => __DIR__ . '/../logs',
+    ],
+],
+
+-----------------------------------------
+AFTER -----------------------------------
+
+'env' => 'production',
+
+'logger' => [
+    'path' => __DIR__ . '/../logs',
+],
+
+----------------------------------------
+```
 
 ## ✨ New Features
 * **Platform Structure**
