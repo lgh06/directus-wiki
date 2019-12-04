@@ -7,8 +7,7 @@
 * 💥 Password reset flow is now a `POST` request instead of a `GET`
 
 ## 🚀 Migration Guide (v7-v8)
-1. Rename the config files to your desired project names (eg `/config/api.my-project.php` to `/config/my-project.php`).
-  Note: if you'd like to keep using `_` as your project name, rename the `/config/api.php` file to `/config/_.php`. 
+1. Rename the config files to your desired project names (eg `/config/api.my-project.php` to `/config/my-project.php`). Note: if you'd like to keep using `_` as your project name, rename the `/config/api.php` file to `/config/_.php`. 
 2. Remove `api_sample.php`, `migrations.php`, and `migrations.upgrades.php` from `/config`
 3. Update `app` and `settings` in your project config file to reflect the following changes:
 
