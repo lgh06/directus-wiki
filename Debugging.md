@@ -5,13 +5,15 @@
  [Vue Devtools](https://chrome.google.com/webstore/detail/vuejs-devtools/ljjemllljcmogpfapbkkighbhhppjdbg). It's
  recommended to use the Vue Devtools with Chrome as the Devtools for Firefox are still really buggy.
 
-> Computed Debugging To debug computed properties, it can be helpful to have a look at this
+> #### Computed Debugging 
+> To debug computed properties, it can be helpful to have a look at this
 >  [Vue Guide](https://v3.vuejs.org/guide/reactivity-computed-watchers.html#computed-debugging).
 
  ## Debugging the Api
 
  To debug the api, we recommend to use [Visual Studio Code](https://code.visualstudio.com/) with it's build in debugger.
- You first have to setup the config for starting the debugger. Create the following file
+ 
+1. You first have to setup the config for starting the debugger. Create the following file
  `./directus/api/.vscode/launch.json` and paste in the following structure.
 
  ```json
@@ -35,8 +37,9 @@
  }
  ```
 
-> Disable Cache Make sure that you have caching disabled as it otherwise returns the cached response. To
->  disable this, goto your `.env` file in the api and set `CACHE_ENABLED` to `false`.
+2. Make sure that you have caching disabled as it otherwise returns the cached response. To disable this, goto your `.env` file in the api and set `CACHE_ENABLED` to `false`.
+
+3. In the `tsconfig.json`, you have to set `sourceMap` to true.
 
  Now you can start the api by going to the debugger view in VS Code, select to debug the Api and press `Start Debugging`.
  This runs the api and allows you to set breakpoints.
