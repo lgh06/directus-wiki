@@ -5,8 +5,6 @@
 
 These flags are stored in the `special` field of `directus_fields`.
 
-[[toc]]
-
 ## Hash
 
 `hash`
