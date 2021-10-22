@@ -1,6 +1,7 @@
 - [Home](/directus/directus/wiki/home)
 - [Debugging](/directus/directus/wiki/debugging)
 - [Filters](/directus/directus/wiki/filters-validation-permissions)
+- [Field Transforms](/directus/directus/wiki/field-transforms)
 - [API](/directus/directus/wiki/api)
 - [App](/directus/directus/wiki/app)
 - [App Components](/directus/directus/wiki/app-components)
