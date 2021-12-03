@@ -1,6 +1,8 @@
 ## Testing schema
 Tests Location: `/api/src/tests/`
 
+Tests Naming convention: `file-name.test.ts` where file-name is the name of the file being tested.
+
 Mock Location: According to Jest documentation mocks must go in a folder called __mocks__ in the same directory as the file you _want to mock_, not the test file.
 
 ## Mocking the Database and Knex
