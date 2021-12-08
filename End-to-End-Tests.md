@@ -8,7 +8,7 @@ Inside the testing file
 
 Full example: 
 `tests/e2e/api/auth/login.test.ts`
-```
+```ts
 // The first describe is the service name (auth, items, collections, etc)
 describe('auth', () => {
 	// second describe is the endpoint name (login, logout, refresh)
