@@ -5,7 +5,7 @@ Currently, the structure for the Items endpoint is based on the relationships be
 - Example: `./tests/e2e/items/createOne.test.ts`
 
 ## Inside the testing file:
-The first `describe` is the service name (auth, items, collections, etc). The second describe is the endpoint or action. The third describe is for the scenario
+The first `describe` is the service name (auth, items, collections, etc). The second describe is the endpoint or action. The third describe is for the scenario.
 ```ts
 describe('auth' () => {
     describe('login', () => {
@@ -13,6 +13,30 @@ describe('auth' () => {
     })
 })
 ```
+
+Under the `describe` for the endpoint declare a Map variable that will hold the vendor names. Use beforeAll() to populate the databases variable. 
+This variable will be used in the test for things 
+like seeding the databases through knex
+Use afterAll() to destroy the connection instances.
+
+```ts
+const databases = new Map<string, Knex>();
+
+beforeAll(async () => {
+	const vendors = getDBsToTest();
+
+	for (const vendor of vendors) {
+		databases.set(vendor, knex(config.knexConfig[vendor]!));
+	}
+});
+
+afterAll(async () => {
+	for (const [_vendor, connection] of databases) {
+		await connection.destroy();
+	}
+});
+```
+
 Use "it" to describe the result
 Use it.each(getDBsToTest()) to test on every enabled database. getDBsToTest() must be imported
 "vendor" is the DB returned from getDBsToTest(). It is used to replace %p in the test description
