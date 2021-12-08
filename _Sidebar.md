@@ -4,6 +4,7 @@
 - [Field Transforms](/directus/directus/wiki/field-transforms)
 - [API](/directus/directus/wiki/api)
    - [🚧 WIP Unit Testing the API](/directus/directus/wiki/🚧-WIP-Unit-Testing-the-API)
+   - [End to End Tests](https://github.com/directus/directus/wiki/End-to-End-Tests)
 - [App](/directus/directus/wiki/app)
 - [App Components](/directus/directus/wiki/app-components)
   - [transition-bounce](/directus/directus/wiki/transition-bounce)
