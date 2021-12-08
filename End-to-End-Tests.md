@@ -1,6 +1,6 @@
  ## Set up the testing file:
 Folder Structure:
-Currently, the structure for the Items endpoint is based on the relationships being tested. This is being reorganized to have files based on actions, such as createOne. Going forward use the new structure and the old tests will be reorganized.
+Currently, the structure for the Items endpoint is based on the relationships being tested. This is being reorganized to have files based on actions, such as `createOne`. Going forward use the new structure and the old tests will be reorganized.
 - Put tests in `./tests/e2e/api/<YOUR ENDPOINT>/`. Name files after the action.
 - Example: `./tests/e2e/items/createOne.test.ts`
 
@@ -37,10 +37,10 @@ afterAll(async () => {
 });
 ```
 
-Use "it" to describe the result
-Use it.each(getDBsToTest()) to test on every enabled database. getDBsToTest() must be imported
-"vendor" is the DB returned from getDBsToTest(). It is used to replace %p in the test description
-Start the test description with %p so that which DB failed is obvious, this is more important when running tests locally.
+Use `it` to describe the result.
+Use `it.each(getDBsToTest())` to test on every enabled database. `getDBsToTest()` must be imported.
+"vendor" is the DB returned from `getDBsToTest()`. It is used to replace %p in the test description
+Start the test description with `%p` so that which DB failed is obvious, this is more important when running tests locally.
 ```ts
 it.each(getDBsToTest())(`%p returns an access_token, expires and a refresh_token for user`, async (vendor) => {})
 ```
@@ -48,9 +48,9 @@ it.each(getDBsToTest())(`%p returns an access_token, expires and a refresh_token
 In this test, I am using the already seeded User account. You can view which users and roles are seeded during setup by looking in `tests/e2e/setup/seeds`
 Remember, testing on multiple roles and permissions is important.
 
-Use request() imported from `supertest` not `HTTP`
+Use `request()` imported from `supertest` not `HTTP`
 
-Because the actual tokens returned will vary use "expect.any()" and in most cases checking every param is not necessary. Use .toMatchObject() in those cases. 
+Because the actual tokens returned will vary use `expect.any()` and in most cases checking every param is not necessary. Use `.toMatchObject()` in those cases. 
 
 
 ```ts
