@@ -17,7 +17,27 @@ Use "it" to describe the result
 Use it.each(getDBsToTest()) to test on every enabled database. getDBsToTest() must be imported
 "vendor" is the DB returned from getDBsToTest(). It is used to replace %p in the test description
 Start the test description with %p so that which DB failed is obvious, this is more important when running tests locally.
+```ts
+it.each(getDBsToTest())(`%p returns an access_token, expires and a refresh_token for user`, async (vendor) => {})
+```
 
+In this test, I am using the already seeded User account. You can view which users and roles are seeded during setup by looking in `tests/e2e/setup/seeds`
+Remember, testing on multiple roles and permissions is important.
+
+Because the actual tokens returned will vary use "expect.any()" and in most cases checking every param is not necessary. Use .toMatchObject() in those cases.
+```ts
+it.each(getDBsToTest())(`%p returns an access_token, expires and a refresh_token for user`, async (vendor) => {
+    const url = `http://localhost:${config.ports[vendor]!}`;
+    const response = await request(url)
+	.post(`/auth/login`)
+        .send({
+		email: 'test@user.com',
+		password: 'TestUserPassword',
+		})
+	.expect('Content-Type', /application\/json/)
+	.expect(200);
+})
+```
 
 ## Full example: 
 `tests/e2e/api/auth/login.test.ts`
