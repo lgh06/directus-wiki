@@ -1,8 +1,8 @@
  ## Set up the testing file:
-	-  Folder Structure:
-	Currently, the structure for the Items endpoint is based on the relationships being tested. This is being reorganized to have files based on actions, such as createOne. Going forward use the new structure and the old tests will be reorganized.
-	    - Put tests in `./tests/e2e/api/<YOUR ENDPOINT>/`. Name files after the action.
-	    - Example: `./tests/e2e/items/createOne.test.ts`
+Folder Structure:
+Currently, the structure for the Items endpoint is based on the relationships being tested. This is being reorganized to have files based on actions, such as createOne. Going forward use the new structure and the old tests will be reorganized.
+- Put tests in `./tests/e2e/api/<YOUR ENDPOINT>/`. Name files after the action.
+- Example: `./tests/e2e/items/createOne.test.ts`
 
 ## Inside the testing file:
 The first `describe` is the service name (auth, items, collections, etc). The second describe is the endpoint or action. The third describe is for the scenario
