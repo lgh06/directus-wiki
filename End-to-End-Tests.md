@@ -14,7 +14,7 @@ describe('auth' () => {
 })
 ```
 
-Under the `describe` for the endpoint declare a Map variable that will hold the vendor names. Use beforeAll() to populate the databases variable. This variable will be used in the test for things like seeding the databases through knex.
+Under the `describe` for the endpoint declare a Map variable that will hold the vendor names. Use `beforeAll()` to populate the databases variable. This variable will be used in the test for things like seeding the databases through knex.
 
 Use `afterAll()` to destroy the connection instances.
 
