@@ -131,7 +131,7 @@ export default defineComponent({
 | `server-sort`        | Handle sorting on the parent level.                                                               | `false`                     | `Boolean`     |
 | `show-manual-sort`   | Show manual sort drag handles                                                                     | `false`                     | `Boolean`     |
 | `show-resize`        | Show resize handlers                                                                              | `false`                     | `Boolean`     |
-| `show-select`        | Show checkboxes                                                                                   | `false`                     | `Boolean`     |
+| `show-select`        | Hide checkboxes: `none` <br/> Show checkboxes: `multiple` <br/> Show radio buttons: `one`                                                                                   | `none`                     | `none`, `one`, `multiple`     |
 | `sort`               | What column / order to sort by. Supports the `v-model` directive. `{ by: string, desc: boolean }` | `null`                      | `Sort`        |
 
 #### Events
