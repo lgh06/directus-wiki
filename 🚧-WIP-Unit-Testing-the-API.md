@@ -1,5 +1,5 @@
 ## Testing schema
-Tests Location: `/api/src/tests/` Mirror the api folder structure.
+Tests Location: `/api/tests/` Mirror the api folder structure.
 
 Tests Naming convention: `file-name.test.ts` where file-name is the name of the file being tested.
 
